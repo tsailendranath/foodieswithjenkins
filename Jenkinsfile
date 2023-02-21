@@ -1,9 +1,9 @@
 pipeline {
     agent {
-        label 'jenkinsslave2'
+        label 'slavenode1'
     }
     environment {
-        FOODIES_GIT_PAT = credentials('pattoken')
+        FOODIES_GIT_PAT = credentials('git')
         TOMCAT_DOWNLOAD_URL = 'https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.70/bin/apache-tomcat-9.0.70.tar.gz'
         TOMCAT_BINARY_FILE = 'apache-tomcat-9.0.70.tar.gz'
         TOMCAT_HOME_DIR = '/u01/middleware/apache-tomcat-9.0.70'
@@ -20,7 +20,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                git url:"https://${FOODIES_GIT_PAT}@github.com/techsriman/foodies.git"
+                git url:"https://${FOODIES_GIT_PAT}@github.com/tsailendranath/foodieswithjenkins.git"
             }
         }
         stage('test') {
